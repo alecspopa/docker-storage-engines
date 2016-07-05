@@ -10,6 +10,7 @@ services:
     volumes:
       - /var/lib/mysql:/var/lib/mysql
       - /var/lib/redis:/data
+      - /var/lib/memcached:/var/lib/memcached
 
 ### MySql Container #############################
 
@@ -29,6 +30,16 @@ services:
     container_name: redis
     image: redis
     volumes_from:
-        - data
+      - data
     ports:
-        - "6379:6379"
+      - "6379:6379"
+
+### Memcached Container #####################################
+
+  memcached:
+    container_name: memcached
+    image: memcached
+    volumes_from:
+      - data
+    ports:
+      - "11211:11211"

@@ -1,4 +1,4 @@
-MySql + Redis with persistance `Data` container
+MySql + Redis + Memcached with persistance `Data` container
 ===
 This is inspired from: [https://github.com/LaraDock/laradock](https://github.com/LaraDock/laradock)
 
@@ -18,7 +18,7 @@ This is inspired from: [https://github.com/LaraDock/laradock](https://github.com
 
     $ docker-compose down
 
-**NOTE:** Data from MySql and Redis is not automatically removed from the data container
+**NOTE:** Data is not automatically removed from the data container
 If you want to cleanup data volumes run:
 
 	$ docker volume rm $(docker volume ls -qf dangling=true)
