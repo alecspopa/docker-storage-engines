@@ -4,13 +4,14 @@ services:
 
 ### Databases Data Container ####################
 
-  data:
-    container_name: data
-    build: ./data
+  volumes_data:
+    container_name: volumes_data
+    build: ./volumes_data
     volumes:
-      - /var/lib/mysql:/var/lib/mysql
-      - /var/lib/redis:/data
-      - /var/lib/memcached:/var/lib/memcached
+      - ./data/mysql:/var/lib/mysql
+      - ./data/postgres:/var/lib/postgres
+      - ./data/redis:/data
+      - ./data/memcached:/var/lib/memcached
 
 ### MySql Container #############################
 
@@ -18,11 +19,23 @@ services:
     container_name: mysql
     image: mysql
     volumes_from:
-      - data
+      - volumes_data
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: test123
+
+### PostgreSQL Container ########################
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    volumes_from:
+      - volumes_data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: test123
 
 ### Redis Container #########################################
 
@@ -30,7 +43,7 @@ services:
     container_name: redis
     image: redis
     volumes_from:
-      - data
+      - volumes_data
     ports:
       - "6379:6379"
 
@@ -40,6 +53,6 @@ services:
     container_name: memcached
     image: memcached
     volumes_from:
-      - data
+      - volumes_data
     ports:
       - "11211:11211"
