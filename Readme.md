@@ -1,5 +1,7 @@
-MySql + Redis + Memcached with persistance `Data` container
+Database with persistance `Data` container
 ===
+## Includes MySql, Postgres, Redis, Memcached
+
 This is inspired from: [https://github.com/LaraDock/laradock](https://github.com/LaraDock/laradock)
 
 ### Start all containers
