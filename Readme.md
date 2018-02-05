@@ -31,3 +31,10 @@ If you want to cleanup data volumes run:
 	$ docker volume rm $(docker volume ls -qf dangling=true)
 
 **NOTE:** If you remove the `Data` container and start it again it will re-use the old volume so **no data is lost**
+
+
+### Docker fix hang on network resolv
+
+Add this in /etc/hosts
+
+	127.0.0.1	localunixsocket.local
