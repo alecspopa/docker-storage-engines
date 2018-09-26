@@ -5,40 +5,41 @@ services:
   mariadb:
     container_name: mariadb
     image: mariadb
-    ports:
-      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: test123
     volumes:
       - ./data/mariadb:/var/lib/mysql
+    ports:
+      - "3306:3306"
 
   mysql:
     container_name: mysql
-    image: mysql:5
-    ports:
-      - "3306:3306"
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: test123
     volumes:
       - ./data/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
 
   postgres:
     container_name: postgres
     image: postgres
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: test123
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   redis:
     container_name: redis
     image: redis
-    ports:
-      - "6379:6379"
     volumes:
       - ./data/redis:/data
+    ports:
+      - "6379:6379"
 
   memcached:
     container_name: memcached
